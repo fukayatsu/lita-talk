@@ -1,6 +1,6 @@
 Gem::Specification.new do |spec|
   spec.name          = "lita-talk"
-  spec.version       = "0.1.3"
+  spec.version       = "0.1.4"
   spec.authors       = ["fukayatsu"]
   spec.email         = ["fukayatsu@gmail.com"]
   spec.description   = "Talk with you if given message didn't match any other handlers."
