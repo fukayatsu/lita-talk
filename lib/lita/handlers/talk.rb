@@ -15,6 +15,7 @@ module Lita
           next nil unless handler.respond_to?(:routes)
           handler.routes
         end.flatten.compact.each do |route|
+          next   if !route.command
           return if response.matches.flatten[0].match(route.pattern)
         end
 
