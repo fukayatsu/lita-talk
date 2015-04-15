@@ -19,9 +19,13 @@ module Lita
           return if response.matches.flatten[0].match(route.pattern)
         end
 
+        if response.matches.flatten[0].match(/ところで|それはそうと|そういえば|BTW/)
+          Lita.redis.del context_key(response)
+        end
+
         context = Lita.redis.get context_key(response)
         api_response = client.create_dialogue(response.message.body, params(context))
-        Lita.redis.set context_key(response), api_response.body["context"]
+        Lita.redis.setex context_key(response), 600, api_response.body["context"]
         response.reply api_response.body["utt"]
       end
 
