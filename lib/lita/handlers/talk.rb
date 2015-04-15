@@ -15,8 +15,7 @@ module Lita
           next nil unless handler.respond_to?(:routes)
           handler.routes
         end.flatten.compact.each do |route|
-          next unless route.command
-          return if response.message.body.match(route.pattern)
+          return if response.matches.flatten[0].match(route.pattern)
         end
 
         context = Lita.redis.get context_key(response)
