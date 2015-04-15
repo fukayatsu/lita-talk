@@ -36,7 +36,11 @@ module Lita
       end
 
       def context_key(response)
-        "lita-talk:#{response.message.source.room}"
+        if Lita.config.robot.adapter == :twitter
+          "lita-talk:#{response.message.user.id}"
+        else
+          "lita-talk:#{response.message.source.room}"
+        end
       end
 
       def params(context)
