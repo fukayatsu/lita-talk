@@ -4,7 +4,7 @@ module Lita
   module Handlers
     class Talk < Handler
       config :docomo_api_key,      type: String,  required: true
-      config :docomo_character_id, type: Integer, required: false
+      config :docomo_character_id, required: false
 
       route(/^(.+)/, :talk, command: true, help: {
         "talk" => "Talk with you if given message didn't match any other handlers."
@@ -46,7 +46,7 @@ module Lita
       def params(context)
         {
           context: context,
-          t:       config.docomo_character_id,
+          t:       Array(config.docomo_character_id).sample,
         }.reject do |key, value|
           value.nil?
         end
