@@ -19,17 +19,19 @@ gem "lita-talk"
 Lita.configure do |config|
   ...
   # required
-  config.handlers.talk.docomo_api_key      = 'xxx'
-
-  # optional (https://dev.smt.docomo.ne.jp/?p=docs.api.page&api_name=dialogue&p_name=api_1#tag01)
-  #  20 : 関西弁キャラ
-  #  30 : 赤ちゃんキャラ
-  #  指定なし : デフォルトキャラ
-  config.handlers.talk.docomo_character_id = 20
-  # config.handlers.talk.docomo_character_id = [nil, 20, 30] # at random in array
+  config.handlers.talk.docomo_api_key = 'xxx'
 end
 ```
 
 ## Usage
 
-![ss 2015-04-15 at 16 24 51](https://cloud.githubusercontent.com/assets/1041857/7153973/25f15966-e38c-11e4-9c26-3aef61e4e7fa.png)
+```
+Lita > lita type
+default
+Lita > lita おはよう
+おはありりー
+Lita > lita type hakata
+ok
+Lita > lita おはよう
+おはようだの
+```
